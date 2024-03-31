@@ -9,28 +9,30 @@ import SwiftUI
 
 struct BaseTabView: View {
     @State var selection = 1
+    @State var tagItem = [TagModel(id: "1", tagName: "hoge"), TagModel(id: "2", tagName: "fuga")]
+    @State var showInputModal = false
 
     var body: some View {
-        TabView(selection: $selection) {
-            
-            ContentView()   // Viewファイル①
-                .tabItem {
-                    Label("Page1", systemImage: "1.circle")
+        NavigationView {
+            TabView(selection: $selection) {
+                ForEach(tagItem, id: \.id) { tag in
+                    WordListView()
+                        .tabItem {
+                            Label(tag.tagName, systemImage: "1.circle")
+                        }
+                        .tag(tag.tagName)
                 }
-                .tag(1)
-            
-            ContentView()   // Viewファイル②
-                .tabItem {
-                    Label("Page2", systemImage: "2.circle")
+            }
+            .toolbar {
+                Button("+") {
+                    showInputModal.toggle()
                 }
-                .tag(2)
-            
-            ContentView()  // Viewファイル③
-                .tabItem {
-                    Label("Page3", systemImage: "3.circle")
-                }
-                .tag(3)
-            
+                .font(.title3)
+                .padding()
+            }
+            .sheet(isPresented: $showInputModal) {
+                InputModal()
+            }
         }
     }
 }
