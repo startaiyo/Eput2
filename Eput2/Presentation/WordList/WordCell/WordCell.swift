@@ -9,12 +9,12 @@ import SwiftUI
 
 struct WordCell: View {
     let text: String
+    let checkBox: CheckBoxView
 
     var body: some View {
-        Text(text)
+        HStack {
+            checkBox
+            Text(text)
+        }
     }
-}
-
-#Preview {
-    WordCell(text: "aaaa")
 }

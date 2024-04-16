@@ -11,3 +11,12 @@ struct WordModel: Hashable {
     let tagID: TagID
     let lang: String
 }
+
+extension WordModel {
+    func toDTO() -> WordDTO {
+        return .init(id: id,
+                     word: word,
+                     tagID: tagID, 
+                     lang: lang)
+    }
+}

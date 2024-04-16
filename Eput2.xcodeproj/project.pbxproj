@@ -20,6 +20,22 @@
 		F883D9D82BB9043E0029F230 /* WordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883D9D72BB9043E0029F230 /* WordModel.swift */; };
 		F883D9DB2BB904B70029F230 /* TagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883D9DA2BB904B70029F230 /* TagModel.swift */; };
 		F883D9DE2BB99EF00029F230 /* InputModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883D9DD2BB99EF00029F230 /* InputModal.swift */; };
+		F883DA032BBC1F340029F230 /* RealmStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA022BBC1F340029F230 /* RealmStorage.swift */; };
+		F883DA062BBC1FA00029F230 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F883DA052BBC1FA00029F230 /* Realm */; };
+		F883DA082BBC1FA00029F230 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F883DA072BBC1FA00029F230 /* RealmSwift */; };
+		F883DA132BBC228E0029F230 /* DefaultWordStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA122BBC228E0029F230 /* DefaultWordStorageService.swift */; };
+		F883DA162BBC229B0029F230 /* WordStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA152BBC229B0029F230 /* WordStorageService.swift */; };
+		F883DA182BBC23220029F230 /* WordAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA172BBC23220029F230 /* WordAppService.swift */; };
+		F883DA1A2BBC232F0029F230 /* DefaultWordAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA192BBC232F0029F230 /* DefaultWordAppService.swift */; };
+		F883DA1C2BBC24A00029F230 /* TagObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA1B2BBC24A00029F230 /* TagObject.swift */; };
+		F883DA1E2BBC24A90029F230 /* WordObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA1D2BBC24A90029F230 /* WordObject.swift */; };
+		F883DA202BBC24B40029F230 /* TagDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA1F2BBC24B40029F230 /* TagDTO.swift */; };
+		F883DA222BBC24BB0029F230 /* WordDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA212BBC24BB0029F230 /* WordDTO.swift */; };
+		F883DA252BBC3C900029F230 /* Realm+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA242BBC3C900029F230 /* Realm+.swift */; };
+		F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA292BBD86810029F230 /* TagSelectView.swift */; };
+		F883DA2C2BBD89840029F230 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2B2BBD89840029F230 /* TagCell.swift */; };
+		F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2E2BBD8B510029F230 /* LangSelectView.swift */; };
+		F8E6DE0F2BCEB71C004AC7E8 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +71,20 @@
 		F883D9D72BB9043E0029F230 /* WordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordModel.swift; sourceTree = "<group>"; };
 		F883D9DA2BB904B70029F230 /* TagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagModel.swift; sourceTree = "<group>"; };
 		F883D9DD2BB99EF00029F230 /* InputModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputModal.swift; sourceTree = "<group>"; };
+		F883DA022BBC1F340029F230 /* RealmStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmStorage.swift; sourceTree = "<group>"; };
+		F883DA122BBC228E0029F230 /* DefaultWordStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordStorageService.swift; sourceTree = "<group>"; };
+		F883DA152BBC229B0029F230 /* WordStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordStorageService.swift; sourceTree = "<group>"; };
+		F883DA172BBC23220029F230 /* WordAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAppService.swift; sourceTree = "<group>"; };
+		F883DA192BBC232F0029F230 /* DefaultWordAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWordAppService.swift; sourceTree = "<group>"; };
+		F883DA1B2BBC24A00029F230 /* TagObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagObject.swift; sourceTree = "<group>"; };
+		F883DA1D2BBC24A90029F230 /* WordObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordObject.swift; sourceTree = "<group>"; };
+		F883DA1F2BBC24B40029F230 /* TagDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDTO.swift; sourceTree = "<group>"; };
+		F883DA212BBC24BB0029F230 /* WordDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDTO.swift; sourceTree = "<group>"; };
+		F883DA242BBC3C900029F230 /* Realm+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+.swift"; sourceTree = "<group>"; };
+		F883DA292BBD86810029F230 /* TagSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectView.swift; sourceTree = "<group>"; };
+		F883DA2B2BBD89840029F230 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		F883DA2E2BBD8B510029F230 /* LangSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSelectView.swift; sourceTree = "<group>"; };
+		F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F883DA082BBC1FA00029F230 /* RealmSwift in Frameworks */,
+				F883DA062BBC1FA00029F230 /* Realm in Frameworks */,
 				0545B7082BB8422800B8157C /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +118,7 @@
 		0545B7092BB8432C00B8157C /* WordList */ = {
 			isa = PBXGroup;
 			children = (
+				F8E6DE0D2BCEB701004AC7E8 /* CheckBoxView */,
 				F883D9D22BB9034A0029F230 /* WordCell */,
 				05D5D9022BB84941002C65C5 /* WordListView.swift */,
 			);
@@ -123,8 +156,10 @@
 		05C6389E2BAFA667007A98BE /* Eput2 */ = {
 			isa = PBXGroup;
 			children = (
-				F883D9D52BB903D20029F230 /* Models */,
+				F883D9FE2BBC1E710029F230 /* Domain */,
+				F883DA232BBC3C850029F230 /* Extension */,
 				05C638C92BB30089007A98BE /* Presentation */,
+				F883DA002BBC1F1C0029F230 /* Infrastructure */,
 				05C6389F2BAFA667007A98BE /* Eput2App.swift */,
 				05C638A32BAFA66A007A98BE /* Assets.xcassets */,
 				05C638A52BAFA66A007A98BE /* Preview Content */,
@@ -178,34 +213,149 @@
 		F883D9D52BB903D20029F230 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F883D9D92BB904AD0029F230 /* TagModel */,
-				F883D9D62BB903DA0029F230 /* WordModel */,
+				F883D9D92BB904AD0029F230 /* Tag */,
+				F883D9D62BB903DA0029F230 /* Word */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F883D9D62BB903DA0029F230 /* WordModel */ = {
+		F883D9D62BB903DA0029F230 /* Word */ = {
 			isa = PBXGroup;
 			children = (
+				F883DA212BBC24BB0029F230 /* WordDTO.swift */,
 				F883D9D72BB9043E0029F230 /* WordModel.swift */,
+				F883DA1D2BBC24A90029F230 /* WordObject.swift */,
 			);
-			path = WordModel;
+			path = Word;
 			sourceTree = "<group>";
 		};
-		F883D9D92BB904AD0029F230 /* TagModel */ = {
+		F883D9D92BB904AD0029F230 /* Tag */ = {
 			isa = PBXGroup;
 			children = (
+				F883DA1F2BBC24B40029F230 /* TagDTO.swift */,
 				F883D9DA2BB904B70029F230 /* TagModel.swift */,
+				F883DA1B2BBC24A00029F230 /* TagObject.swift */,
 			);
-			path = TagModel;
+			path = Tag;
 			sourceTree = "<group>";
 		};
 		F883D9DC2BB99ED10029F230 /* InputModal */ = {
 			isa = PBXGroup;
 			children = (
 				F883D9DD2BB99EF00029F230 /* InputModal.swift */,
+				F883DA2D2BBD8B400029F230 /* LangSelectView */,
+				F883DA262BBD865B0029F230 /* TagSelectView */,
 			);
 			path = InputModal;
+			sourceTree = "<group>";
+		};
+		F883D9FE2BBC1E710029F230 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				F883D9FF2BBC1E9C0029F230 /* Services */,
+				F883D9D52BB903D20029F230 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		F883D9FF2BBC1E9C0029F230 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA0F2BBC226F0029F230 /* App */,
+				F883DA092BBC1FDD0029F230 /* Storage */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		F883DA002BBC1F1C0029F230 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA022BBC1F340029F230 /* RealmStorage.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		F883DA092BBC1FDD0029F230 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA0C2BBC22250029F230 /* Interface */,
+				F883DA0B2BBC221F0029F230 /* Implementation */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		F883DA0B2BBC221F0029F230 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA122BBC228E0029F230 /* DefaultWordStorageService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		F883DA0C2BBC22250029F230 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA152BBC229B0029F230 /* WordStorageService.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		F883DA0F2BBC226F0029F230 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA112BBC22790029F230 /* Interface */,
+				F883DA102BBC22740029F230 /* Implementation */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F883DA102BBC22740029F230 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA192BBC232F0029F230 /* DefaultWordAppService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		F883DA112BBC22790029F230 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA172BBC23220029F230 /* WordAppService.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		F883DA232BBC3C850029F230 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA242BBC3C900029F230 /* Realm+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		F883DA262BBD865B0029F230 /* TagSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA2B2BBD89840029F230 /* TagCell.swift */,
+				F883DA292BBD86810029F230 /* TagSelectView.swift */,
+			);
+			path = TagSelectView;
+			sourceTree = "<group>";
+		};
+		F883DA2D2BBD8B400029F230 /* LangSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				F883DA2E2BBD8B510029F230 /* LangSelectView.swift */,
+			);
+			path = LangSelectView;
+			sourceTree = "<group>";
+		};
+		F8E6DE0D2BCEB701004AC7E8 /* CheckBoxView */ = {
+			isa = PBXGroup;
+			children = (
+				F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */,
+			);
+			path = CheckBoxView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +376,8 @@
 			name = Eput2;
 			packageProductDependencies = (
 				0545B7072BB8422800B8157C /* ComposableArchitecture */,
+				F883DA052BBC1FA00029F230 /* Realm */,
+				F883DA072BBC1FA00029F230 /* RealmSwift */,
 			);
 			productName = Eput2;
 			productReference = 05C6389C2BAFA667007A98BE /* Eput2.app */;
@@ -301,6 +453,7 @@
 			mainGroup = 05C638932BAFA667007A98BE;
 			packageReferences = (
 				0545B7062BB8422800B8157C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				F883DA042BBC1FA00029F230 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 05C6389D2BAFA667007A98BE /* Products */;
 			projectDirPath = "";
@@ -345,12 +498,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D5D9032BB84941002C65C5 /* WordListView.swift in Sources */,
+				F883DA1A2BBC232F0029F230 /* DefaultWordAppService.swift in Sources */,
 				F883D9DB2BB904B70029F230 /* TagModel.swift in Sources */,
+				F883DA2C2BBD89840029F230 /* TagCell.swift in Sources */,
+				F883DA132BBC228E0029F230 /* DefaultWordStorageService.swift in Sources */,
 				F883D9D82BB9043E0029F230 /* WordModel.swift in Sources */,
+				F883DA162BBC229B0029F230 /* WordStorageService.swift in Sources */,
+				F8E6DE0F2BCEB71C004AC7E8 /* CheckBoxView.swift in Sources */,
+				F883DA032BBC1F340029F230 /* RealmStorage.swift in Sources */,
+				F883DA1C2BBC24A00029F230 /* TagObject.swift in Sources */,
 				F883D9D42BB903710029F230 /* WordCell.swift in Sources */,
+				F883DA182BBC23220029F230 /* WordAppService.swift in Sources */,
 				F883D9DE2BB99EF00029F230 /* InputModal.swift in Sources */,
+				F883DA222BBC24BB0029F230 /* WordDTO.swift in Sources */,
 				05C638A02BAFA667007A98BE /* Eput2App.swift in Sources */,
+				F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */,
+				F883DA252BBC3C900029F230 /* Realm+.swift in Sources */,
+				F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */,
+				F883DA1E2BBC24A90029F230 /* WordObject.swift in Sources */,
 				05D5D9012BB848CD002C65C5 /* BaseTabView.swift in Sources */,
+				F883DA202BBC24B40029F230 /* TagDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +851,14 @@
 				minimumVersion = 1.9.2;
 			};
 		};
+		F883DA042BBC1FA00029F230 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -691,6 +866,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0545B7062BB8422800B8157C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		F883DA052BBC1FA00029F230 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F883DA042BBC1FA00029F230 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		F883DA072BBC1FA00029F230 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F883DA042BBC1FA00029F230 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

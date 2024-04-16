@@ -8,20 +8,45 @@
 import SwiftUI
 
 struct BaseTabView: View {
-    @State var selection = 1
-    @State var tagItem = [TagModel(id: "1", tagName: "hoge"), TagModel(id: "2", tagName: "fuga")]
+    @State var selection: TagModel
+    @State var tagItem: [TagModel] = []
     @State var showInputModal = false
+    @State var wordList = [WordModel]()
+    private let wordAppService: WordAppService = DefaultWordAppService()
+    init() {
+        let items = wordAppService.getAllTags()
+        _tagItem = State(initialValue: items)
+        _selection = State(initialValue: items[0])
+        let words = wordAppService.getWords(of: selection.id)
+        _wordList = State(initialValue: words)
+    }
 
     var body: some View {
         NavigationView {
             TabView(selection: $selection) {
-                ForEach(tagItem, id: \.id) { tag in
-                    WordListView()
+                ForEach(tagItem, id: \.self) { tag in
+                    WordListView(deleteWord: { word in
+                        
+                    },
+                                 itemList: $wordList)
                         .tabItem {
                             Label(tag.tagName, systemImage: "1.circle")
                         }
-                        .tag(tag.tagName)
+                        .tag(tag)
                 }
+            }
+            .onChange(of: selection) { _, _ in
+                wordList = wordAppService.getWords(of: selection.id)
+            }
+            .sheet(isPresented: $showInputModal) {
+                InputModal(tags: $tagItem,
+                           onDismiss: { word in
+                    wordList = wordAppService.getWords(of: selection.id)
+                    wordList.append(word)
+                },
+                           onRegisterTag: {
+                    tagItem = wordAppService.getAllTags()
+                })
             }
             .toolbar {
                 Button("+") {
@@ -30,9 +55,12 @@ struct BaseTabView: View {
                 .font(.title3)
                 .padding()
             }
-            .sheet(isPresented: $showInputModal) {
-                InputModal()
-            }
+        }
+    }
+
+    func deleteWord(_ word: WordModel) {
+        Task {
+            try wordAppService.deleteWord(word.toDTO())
         }
     }
 }

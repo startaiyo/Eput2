@@ -10,26 +10,34 @@ import AVFoundation
 
 struct WordListView: View {
     @State var synthesizer = AVSpeechSynthesizer()
-    @State var itemList = [WordModel(id: "1", word: "ほげ", tagID: "1", lang: "ja-JP"),
-                           WordModel(id: "2", word: "ふが", tagID: "2", lang: "ja-JP")]
     @State private var selected: Set<WordModel> = []
+    let deleteWord: (WordModel) -> Void
     var body: some View {
         VStack {
             List(selection: $selected) {
                 ForEach(itemList, id: \.self) { item in
-                    WordCell(text: item.word)
+                    WordCell(text: item.word,
+                             checkBox: CheckBoxView(isChecked: self.binding(for: item)))
+                        .listRowBackground(Color.white)
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                deleteWord(item)
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                        }
                 }
             }
-            .environment(\.editMode, .constant(.active))
-            .onChange(of: selected) { _, _ in
-                print(selected)
-            }
+            .background(Color(.systemGray6))
             
             Button("Read Text") {
                 readText()
             }
-        }
+            .buttonStyle(.bordered)
+            .tint(.red)
+        }.background(Color(.systemGray6))
     }
+    @Binding var itemList: [WordModel]
 
     func readText() {
         selected.forEach {
@@ -39,8 +47,19 @@ struct WordListView: View {
             synthesizer.speak(utterText)
         }
     }
-}
 
-#Preview {
-    WordListView()
+    private func binding(for item: WordModel) -> Binding<Bool> {
+        Binding(
+            get: {
+                selected.contains(item)
+            },
+            set: { isSelected in
+                if isSelected {
+                    selected.insert(item)
+                } else {
+                    selected.remove(item)
+                }
+            }
+        )
+    }
 }
