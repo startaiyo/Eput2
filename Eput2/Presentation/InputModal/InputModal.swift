@@ -45,26 +45,23 @@ struct InputModal: View {
             }
             .padding()
             Button("input登録") {
-                guard let tag else { return }
-                let word = WordDTO(id: UUID().uuidString,
-                                   word: inputText,
-                                   tagID: tag.id,
-                                   lang: lang)
-                sendData(word: word)
-                dismiss()
-                onDismiss(word.toModel())
+                Task {
+                    guard let tag else { return }
+                    let word = WordDTO(id: UUID().uuidString,
+                                       word: inputText,
+                                       tagID: tag.id,
+                                       lang: lang)
+                    try wordAppService.saveWordData(word) {
+                        dismiss()
+                        onDismiss(word.toModel())
+                    }
+                }
             }
         }
     }
 }
 
 extension InputModal {
-    func sendData(word: WordDTO) {
-        Task {
-            try wordAppService.saveWordData(word)
-        }
-    }
-
     func sendTag(_ tag: TagModel?) {
         Task {
             guard let tag else { return }

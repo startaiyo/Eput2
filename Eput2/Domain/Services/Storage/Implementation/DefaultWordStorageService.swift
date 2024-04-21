@@ -38,17 +38,20 @@ extension DefaultWordStorageService: WordStorageService {
         }
     }
 
-    func saveWord(_ word: WordDTO) throws {
+    func saveWord(_ word: WordDTO,
+                  completionHandler: @escaping () -> Void) throws {
         let wordObject = word.toObject()
         try realm.safeWrite {
             realm.add(wordObject,
                       update: .all)
+            completionHandler()
         }
     }
 
     func deleteWord(_ word: WordDTO) throws {
+        let wordToBeDelete = realm.objects(WordObject.self).where { $0.id == word.id }
         try realm.safeWrite {
-            realm.delete(word.toObject())
+            realm.delete(wordToBeDelete)
         }
     }
 

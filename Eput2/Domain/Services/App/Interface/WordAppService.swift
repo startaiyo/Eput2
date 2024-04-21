@@ -6,7 +6,8 @@
 //
 
 protocol WordAppService {
-    func saveWordData(_ word: WordDTO) throws
+    func saveWordData(_ word: WordDTO,
+                      completionHandler: @escaping () -> Void) throws
     func deleteWord(_ word: WordDTO) throws
     func getWords(of tag: TagID) -> [WordModel]
     func saveTag(_ tag: TagModel) throws

@@ -14,8 +14,11 @@ final class DefaultWordAppService {
 }
 
 extension DefaultWordAppService: WordAppService {
-    func saveWordData(_ word: WordDTO) throws {
-        try storageService.saveWord(word)
+    func saveWordData(_ word: WordDTO,
+                      completionHandler: @escaping () -> Void) throws {
+        try storageService.saveWord(word) {
+            completionHandler()
+        }
     }
     
     func deleteWord(_ word: WordDTO) throws {

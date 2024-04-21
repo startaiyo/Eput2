@@ -8,7 +8,8 @@
 protocol WordStorageService {
     func getWords(of tagID: TagID) -> [WordDTO]
     func saveTag(_ tag: TagDTO) throws
-    func saveWord(_ word: WordDTO) throws
+    func saveWord(_ word: WordDTO,
+                  completionHandler: @escaping () -> Void) throws
     func deleteWord(_ word: WordDTO) throws
     func getTags() -> [TagDTO]
 }

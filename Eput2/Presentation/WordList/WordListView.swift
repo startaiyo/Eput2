@@ -10,8 +10,10 @@ import AVFoundation
 
 struct WordListView: View {
     @State var synthesizer = AVSpeechSynthesizer()
-    @State private var selected: Set<WordModel> = []
+    @State private var selected: WordModel?
     let deleteWord: (WordModel) -> Void
+    @Binding var checkedItems: Set<WordModel>
+    @Binding var itemList: [WordModel]
     var body: some View {
         VStack {
             List(selection: $selected) {
@@ -26,10 +28,13 @@ struct WordListView: View {
                                 Image(systemName: "trash")
                             }
                         }
+                }.onMove { from, to in
+                    itemList.move(fromOffsets: from,
+                                  toOffset: to)
                 }
             }
             .background(Color(.systemGray6))
-            
+
             Button("Read Text") {
                 readText()
             }
@@ -37,10 +42,15 @@ struct WordListView: View {
             .tint(.red)
         }.background(Color(.systemGray6))
     }
-    @Binding var itemList: [WordModel]
 
     func readText() {
-        selected.forEach {
+        checkedItems.sorted { (index1, index2) in
+            if let firstIndex = itemList.firstIndex(of: index1),
+               let secondIndex = itemList.firstIndex(of: index2) {
+                return firstIndex < secondIndex
+            } else {
+                return false
+            }}.forEach {
             let utterText = AVSpeechUtterance(string: $0.word)
             utterText.voice = AVSpeechSynthesisVoice(language: $0.lang)
             utterText.rate = 0.5
@@ -51,13 +61,13 @@ struct WordListView: View {
     private func binding(for item: WordModel) -> Binding<Bool> {
         Binding(
             get: {
-                selected.contains(item)
+                checkedItems.contains(item)
             },
             set: { isSelected in
                 if isSelected {
-                    selected.insert(item)
+                    checkedItems.insert(item)
                 } else {
-                    selected.remove(item)
+                    checkedItems.remove(item)
                 }
             }
         )
