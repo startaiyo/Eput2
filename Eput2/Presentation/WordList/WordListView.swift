@@ -14,6 +14,8 @@ struct WordListView: View {
     let deleteWord: (WordModel) -> Void
     @Binding var checkedItems: Set<WordModel>
     @Binding var itemList: [WordModel]
+    let onOrderChange: (_ newOrder: [WordModel]) -> Void
+
     var body: some View {
         VStack {
             List(selection: $selected) {
@@ -31,6 +33,7 @@ struct WordListView: View {
                 }.onMove { from, to in
                     itemList.move(fromOffsets: from,
                                   toOffset: to)
+                    onOrderChange(itemList)
                 }
             }
             .background(Color(.systemGray6))

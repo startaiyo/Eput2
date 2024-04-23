@@ -35,6 +35,8 @@
 		F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA292BBD86810029F230 /* TagSelectView.swift */; };
 		F883DA2C2BBD89840029F230 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2B2BBD89840029F230 /* TagCell.swift */; };
 		F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2E2BBD8B510029F230 /* LangSelectView.swift */; };
+		F8E352F22BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */; };
+		F8E352F42BD53BF600D8CA27 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */; };
 		F8E6DE0F2BCEB71C004AC7E8 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,8 @@
 		F883DA292BBD86810029F230 /* TagSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectView.swift; sourceTree = "<group>"; };
 		F883DA2B2BBD89840029F230 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		F883DA2E2BBD8B510029F230 /* LangSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSelectView.swift; sourceTree = "<group>"; };
+		F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserDefaultsService.swift; sourceTree = "<group>"; };
+		F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -312,6 +316,7 @@
 		F883DA102BBC22740029F230 /* Implementation */ = {
 			isa = PBXGroup;
 			children = (
+				F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */,
 				F883DA192BBC232F0029F230 /* DefaultWordAppService.swift */,
 			);
 			path = Implementation;
@@ -320,6 +325,7 @@
 		F883DA112BBC22790029F230 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
+				F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */,
 				F883DA172BBC23220029F230 /* WordAppService.swift */,
 			);
 			path = Interface;
@@ -501,6 +507,7 @@
 				F883DA1A2BBC232F0029F230 /* DefaultWordAppService.swift in Sources */,
 				F883D9DB2BB904B70029F230 /* TagModel.swift in Sources */,
 				F883DA2C2BBD89840029F230 /* TagCell.swift in Sources */,
+				F8E352F42BD53BF600D8CA27 /* UserDefaultsService.swift in Sources */,
 				F883DA132BBC228E0029F230 /* DefaultWordStorageService.swift in Sources */,
 				F883D9D82BB9043E0029F230 /* WordModel.swift in Sources */,
 				F883DA162BBC229B0029F230 /* WordStorageService.swift in Sources */,
@@ -513,6 +520,7 @@
 				F883DA222BBC24BB0029F230 /* WordDTO.swift in Sources */,
 				05C638A02BAFA667007A98BE /* Eput2App.swift in Sources */,
 				F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */,
+				F8E352F22BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift in Sources */,
 				F883DA252BBC3C900029F230 /* Realm+.swift in Sources */,
 				F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */,
 				F883DA1E2BBC24A90029F230 /* WordObject.swift in Sources */,

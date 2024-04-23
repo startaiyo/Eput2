@@ -21,7 +21,14 @@ struct BaseTabView: View {
         _selection = State(initialValue: items.isEmpty ? TagModel(id: "dummy",
                                                                   tagName: "hello, swift") : items[0])
         let words = wordAppService.getWords(of: selection.id)
-        _wordList = State(initialValue: words)
+        let previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
+        if Set(previousWords) != Set(words) {
+            _wordList = State(initialValue: words)
+            wordAppService.saveWordsToUserDefaults(words.map { $0.toDTO() },
+                                                   for: selection.id)
+        } else {
+            _wordList = State(initialValue: previousWords)
+        }
     }
 
     var body: some View {
@@ -32,7 +39,11 @@ struct BaseTabView: View {
                         deleteWord(word)
                     },
                                  checkedItems: $checkedItems,
-                                 itemList: $wordList)
+                                 itemList: $wordList,
+                                 onOrderChange: { newOrderList in
+                        wordAppService.saveWordsToUserDefaults(newOrderList.map { $0.toDTO() },
+                                                               for: selection.id)
+                    })
                         .tabItem {
                             Label(tag.tagName, systemImage: "1.circle")
                         }
@@ -40,12 +51,22 @@ struct BaseTabView: View {
                 }
             }
             .onChange(of: selection) { _, _ in
-                wordList = wordAppService.getWords(of: selection.id)
+                let newWords = wordAppService.getWords(of: selection.id)
+                let previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
+                if Set(previousWords) != Set(newWords) {
+                    wordList = newWords
+                } else {
+                    wordList = previousWords
+                }
             }
             .sheet(isPresented: $showInputModal) {
                 InputModal(tags: $tagItem,
                            onDismiss: { word in
-                    wordList = wordAppService.getWords(of: selection.id)
+                    var previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
+                    previousWords.append(word)
+                    wordList = previousWords
+                    wordAppService.saveWordsToUserDefaults(wordList.map { $0.toDTO() },
+                                                           for: selection.id)
                 },
                            onRegisterTag: {
                     tagItem = wordAppService.getAllTags()
@@ -66,6 +87,8 @@ struct BaseTabView: View {
         Task {
             try wordAppService.deleteWord(word.toDTO())
             wordList.removeAll(where: { $0 == word })
+            wordAppService.saveWordsToUserDefaults(wordList.map { $0.toDTO() },
+                                                   for: selection.id)
             checkedItems.remove(word)
         }
     }

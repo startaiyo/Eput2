@@ -8,6 +8,9 @@
 protocol WordAppService {
     func saveWordData(_ word: WordDTO,
                       completionHandler: @escaping () -> Void) throws
+    func saveWordsToUserDefaults(_ words: [WordDTO],
+                                 for tagID: TagID)
+    func getWordsFromUserDefaults(_ tagID: TagID) -> [WordModel]
     func deleteWord(_ word: WordDTO) throws
     func getWords(of tag: TagID) -> [WordModel]
     func saveTag(_ tag: TagModel) throws

@@ -5,7 +5,7 @@
 //  Created by Shotaro Doi on 2024/04/02.
 //
 
-struct WordDTO: Equatable {
+struct WordDTO: Equatable, Codable {
     let id: String
     let word: String
     let tagID: TagID

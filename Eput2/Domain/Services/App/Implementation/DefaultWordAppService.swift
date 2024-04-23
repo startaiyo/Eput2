@@ -7,9 +7,12 @@
 
 final class DefaultWordAppService {
     private let storageService: WordStorageService
+    private let userDefaultsService: UserDefaultsService
 
-    init(storageService: WordStorageService = DefaultWordStorageService()) {
+    init(storageService: WordStorageService = DefaultWordStorageService(),
+         userDefaultsService: UserDefaultsService = DefaultUserDefaultsService()) {
         self.storageService = storageService
+        self.userDefaultsService = userDefaultsService
     }
 }
 
@@ -35,5 +38,25 @@ extension DefaultWordAppService: WordAppService {
 
     func getAllTags() -> [TagModel] {
         return storageService.getTags().map { $0.toModel() }
+    }
+
+    func saveWordsToUserDefaults(_ words: [WordDTO],
+                                 for tagID: TagID) {
+        do {
+            try userDefaultsService.saveObjects(words,
+                                                forKey: tagID)
+        } catch {
+            print(error)
+        }
+    }
+
+    func getWordsFromUserDefaults(_ tagID: TagID) -> [WordModel] {
+        do {
+            let words = try userDefaultsService.getObjects(forKey: tagID) as [WordDTO]
+            return words.map { $0.toModel() }
+        } catch {
+            print(error)
+            return []
+        }
     }
 }
