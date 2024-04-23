@@ -58,4 +58,11 @@ extension DefaultWordStorageService: WordStorageService {
     func getTags() -> [TagDTO] {
         return realm.objects(TagObject.self).map { $0.toDTO() }
     }
+
+    func deleteTag(_ tag: TagDTO) throws {
+        let tagToBeDelete = realm.objects(TagObject.self).where { $0.id == tag.id }
+        try realm.safeWrite {
+            realm.delete(tagToBeDelete)
+        }
+    }
 }

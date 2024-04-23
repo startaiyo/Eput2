@@ -12,4 +12,5 @@ protocol WordStorageService {
                   completionHandler: @escaping () -> Void) throws
     func deleteWord(_ word: WordDTO) throws
     func getTags() -> [TagDTO]
+    func deleteTag(_ tag: TagDTO) throws
 }

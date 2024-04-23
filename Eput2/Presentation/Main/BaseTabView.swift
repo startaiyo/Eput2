@@ -59,7 +59,7 @@ struct BaseTabView: View {
                     wordList = previousWords
                 }
             }
-            .sheet(isPresented: $showInputModal) {
+            .fullScreenCover(isPresented: $showInputModal) {
                 InputModal(tags: $tagItem,
                            onDismiss: { word in
                     var previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
@@ -67,6 +67,7 @@ struct BaseTabView: View {
                     wordList = previousWords
                     wordAppService.saveWordsToUserDefaults(wordList.map { $0.toDTO() },
                                                            for: selection.id)
+                    tagItem = wordAppService.getAllTags()
                 },
                            onRegisterTag: {
                     tagItem = wordAppService.getAllTags()

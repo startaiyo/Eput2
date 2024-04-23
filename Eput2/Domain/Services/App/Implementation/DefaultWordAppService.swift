@@ -59,4 +59,8 @@ extension DefaultWordAppService: WordAppService {
             return []
         }
     }
+
+    func deleteTag(_ tag: TagDTO) throws {
+        try storageService.deleteTag(tag)
+    }
 }

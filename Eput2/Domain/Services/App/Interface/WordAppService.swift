@@ -15,4 +15,5 @@ protocol WordAppService {
     func getWords(of tag: TagID) -> [WordModel]
     func saveTag(_ tag: TagModel) throws
     func getAllTags() -> [TagModel]
+    func deleteTag(_ tag: TagDTO) throws
 }

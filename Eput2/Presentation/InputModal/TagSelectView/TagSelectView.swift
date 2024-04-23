@@ -21,6 +21,13 @@ struct TagSelectView: View {
                 ForEach(tags, id: \.self) { item in
                     TagCell(tagName: item.tagName,
                             isSelected: selected == item)
+                    .swipeActions(allowsFullSwipe: false) {
+                        Button(role: .destructive) {
+                            deleteTag(item)
+                        } label: {
+                            Image(systemName: "trash")
+                        }
+                    }
                 }
                 Button("+") {
                     showingNewTagField.toggle()
@@ -34,7 +41,7 @@ struct TagSelectView: View {
                 TextField("Enter new tag name",
                           text: $tagText)
                 Button("OK",
-                     action: {
+                       action: {
                     registerTag(tagText)
                 })
             }
@@ -45,5 +52,12 @@ struct TagSelectView: View {
 extension TagSelectView {
     func loadTag() {
         tags = wordAppService.getAllTags()
+    }
+
+    func deleteTag(_ tag: TagModel) {
+        Task {
+            try wordAppService.deleteTag(tag.toDTO())
+            tags.removeAll { $0 == tag }
+        }
     }
 }
