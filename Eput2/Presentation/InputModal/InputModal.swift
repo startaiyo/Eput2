@@ -21,31 +21,54 @@ struct InputModal: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .center) {
+                Text("Input")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .padding(.top, 16) // Add top padding to the navigation title
+                    .frame(maxWidth: .infinity, 
+                           alignment: .center)
+
                 HStack {
-                    Text("入力文")
-                    TextField("文字を入力してください",
-                              text: $inputText)
-                    .textFieldStyle(.roundedBorder)
+                    Text("Input")
+                        .font(.headline)
+                    TextField("Enter text", text: $inputText)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
 
                 }.padding()
+
                 HStack {
-                    Text("言語")
+                    Text("Language")
+                        .font(.headline)
+                    Spacer()
                     LangSelectView(selectedLang: $lang)
                 }
-                VStack {
-                    Text("タグ")
-                    TagSelectView(tags: $tags,
-                                  selected: $tag,
-                                  tagText: $newTagText,
-                                  registerTag: { tagText in
-                        let tag = TagModel(id: UUID().uuidString,
-                                           tagName: tagText)
-                        sendTag(tag)
-                    })
-                }
                 .padding()
-                Button("input登録") {
+
+                // Tags Section
+                VStack {
+                    Spacer()
+                    HStack(alignment: .center,
+                           spacing: 8) {
+                        Text("Tags")
+                            .font(.headline)
+
+                        TagSelectView(tags: $tags,
+                                      selected: $tag,
+                                      tagText: $newTagText,
+                                      registerTag: { tagText in
+                            let tag = TagModel(id: UUID().uuidString,
+                                               tagName: tagText)
+                            sendTag(tag)
+                        })
+                        .padding()
+                    }
+                    Spacer()
+                }.padding()
+
+                // Register Button
+                Button("Register") {
                     Task {
                         guard let tag else { return }
                         let word = WordDTO(id: UUID().uuidString,
@@ -58,17 +81,26 @@ struct InputModal: View {
                         }
                     }
                 }
+                .buttonStyle(.bordered)
+                .controlSize(.large)
+                .padding()
             }
+            .background(Color(UIColor.systemGray6)) // Light gray background color
+            .cornerRadius(16) // Rounded corners for the modal
+            .padding() // Add padding to the modal
             .toolbar {
                 ToolbarItem(placement: .navigation) {
-                    Button(action: {dismiss()}) {
+                    Button(action: { dismiss() }) {
                         HStack {
                             Image(systemName: "chevron.left")
+                                .imageScale(.large)
+                                .padding(.trailing, 2)
                             Text("Back")
                         }
                     }
                 }
             }
+            .navigationTitle("")
         }
     }
 }

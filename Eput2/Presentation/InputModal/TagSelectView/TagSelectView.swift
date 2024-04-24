@@ -17,10 +17,15 @@ struct TagSelectView: View {
 
     var body: some View {
         VStack {
+            Spacer()
+
             List(selection: $selected) {
                 ForEach(tags, id: \.self) { item in
                     TagCell(tagName: item.tagName,
                             isSelected: selected == item)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .padding(.vertical, 8) // Add vertical padding to create space between cells
                     .swipeActions(allowsFullSwipe: false) {
                         Button(role: .destructive) {
                             deleteTag(item)
@@ -29,12 +34,18 @@ struct TagSelectView: View {
                         }
                     }
                 }
-                Button("+") {
+
+                // New Tag Button
+                Button(action: {
                     showingNewTagField.toggle()
+                }) {
+                    HStack {
+                        Image(systemName: "plus.circle")
+                        Text("New Tag")
+                    }
                 }
+                .listRowSeparator(.hidden)
             }
-            .scrollContentBackground(.hidden)
-            .background(.white)
             .listStyle(PlainListStyle())
             .alert("Enter new tag name",
                    isPresented: $showingNewTagField) {
@@ -45,7 +56,13 @@ struct TagSelectView: View {
                     registerTag(tagText)
                 })
             }
+
+            Spacer()
         }
+        .padding()
+        .background(Color.white) // White background
+        .cornerRadius(8) // Rounded corners
+        .shadow(radius: 2)
     }
 }
 

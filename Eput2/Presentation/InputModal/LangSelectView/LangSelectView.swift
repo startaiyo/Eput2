@@ -11,11 +11,12 @@ struct LangSelectView: View {
     @Binding var selectedLang: String
 
     var body: some View {
-        Picker("言語を選択", 
+        Picker("", 
                selection: $selectedLang) {
             Text("日本語").tag(Langs.Japanese.value)
             Text("English").tag(Langs.English.value)
         }
+        .pickerStyle(SegmentedPickerStyle())
     }
 }
 
