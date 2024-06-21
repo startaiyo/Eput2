@@ -20,12 +20,19 @@ struct BaseTabView: View {
         _tagItem = State(initialValue: items)
         _selection = State(initialValue: items.isEmpty ? TagModel(id: "dummy",
                                                                   tagName: "hello, swift") : items[0])
+        items.forEach { item in
+            let words = wordAppService.getWords(of: item.id)
+            let previousWords = wordAppService.getWordsFromUserDefaults(item.id)
+            if Set(previousWords) != Set(words) {
+                wordAppService.saveWordsToUserDefaults(words.map { $0.toDTO() },
+                                                       for: selection.id)
+            }
+        }
+
         let words = wordAppService.getWords(of: selection.id)
         let previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
         if Set(previousWords) != Set(words) {
             _wordList = State(initialValue: words)
-            wordAppService.saveWordsToUserDefaults(words.map { $0.toDTO() },
-                                                   for: selection.id)
         } else {
             _wordList = State(initialValue: previousWords)
         }
@@ -45,7 +52,8 @@ struct BaseTabView: View {
                                                                for: selection.id)
                     })
                         .tabItem {
-                            Label(tag.tagName, systemImage: "1.circle")
+                            Label(tag.tagName,
+                                  systemImage: "tag")
                         }
                         .tag(tag)
                 }
@@ -61,12 +69,16 @@ struct BaseTabView: View {
             }
             .fullScreenCover(isPresented: $showInputModal) {
                 InputModal(tags: $tagItem,
-                           onDismiss: { word in
-                    var previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
+                           onDismiss: { tag, word in
+                    var previousWords = wordAppService.getWordsFromUserDefaults(tag.id)
                     previousWords.append(word)
-                    wordList = previousWords
-                    wordAppService.saveWordsToUserDefaults(wordList.map { $0.toDTO() },
-                                                           for: selection.id)
+                    wordAppService.saveWordsToUserDefaults(previousWords.map { $0.toDTO() },
+                                                           for: tag.id)
+                    if tag.id == selection.id {
+                        wordList = previousWords
+                    } else {
+                        wordList = wordAppService.getWordsFromUserDefaults(selection.id)
+                    }
                     tagItem = wordAppService.getAllTags()
                 },
                            onRegisterTag: {

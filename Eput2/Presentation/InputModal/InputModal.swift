@@ -14,7 +14,7 @@ struct InputModal: View {
     @State var lang: String = Langs.Japanese.value
     @State var newTagText = ""
     @Binding var tags: [TagModel]
-    var onDismiss: (WordModel) -> Void
+    var onDismiss: (TagModel, WordModel) -> Void
     var onRegisterTag: () -> Void
 
     @Environment(\.dismiss) private var dismiss
@@ -77,7 +77,8 @@ struct InputModal: View {
                                            lang: lang)
                         try wordAppService.saveWordData(word) {
                             dismiss()
-                            onDismiss(word.toModel())
+                            onDismiss(tag,
+                                      word.toModel())
                         }
                     }
                 }
