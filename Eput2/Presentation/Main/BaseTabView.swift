@@ -50,7 +50,8 @@ struct BaseTabView: View {
                                  onOrderChange: { newOrderList in
                         wordAppService.saveWordsToUserDefaults(newOrderList.map { $0.toDTO() },
                                                                for: selection.id)
-                    })
+                    }, 
+                                 selectedTag: selection)
                         .tabItem {
                             Label(tag.tagName,
                                   systemImage: "tag")

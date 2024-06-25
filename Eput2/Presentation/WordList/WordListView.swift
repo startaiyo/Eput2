@@ -15,6 +15,7 @@ struct WordListView: View {
     @Binding var checkedItems: Set<WordModel>
     @Binding var itemList: [WordModel]
     let onOrderChange: (_ newOrder: [WordModel]) -> Void
+    let selectedTag: TagModel
 
     var body: some View {
         VStack {
@@ -47,7 +48,7 @@ struct WordListView: View {
     }
 
     func readText() {
-        checkedItems.sorted { (index1, index2) in
+        checkedItems.filter { $0.tagID == selectedTag.id }.sorted { (index1, index2) in
             if let firstIndex = itemList.firstIndex(of: index1),
                let secondIndex = itemList.firstIndex(of: index2) {
                 return firstIndex < secondIndex
