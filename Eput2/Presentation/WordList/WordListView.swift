@@ -42,6 +42,7 @@ struct WordListView: View {
             Button("Read Text") {
                 readText()
             }
+            .disabled(checkedItems.isEmpty)
             .buttonStyle(.bordered)
             .tint(.red)
         }.background(Color(.systemGray6))

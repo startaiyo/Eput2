@@ -82,6 +82,7 @@ struct InputModal: View {
                         }
                     }
                 }
+                .disabled(!(!inputText.isEmpty && tag != nil))
                 .buttonStyle(.bordered)
                 .controlSize(.large)
                 .padding()
