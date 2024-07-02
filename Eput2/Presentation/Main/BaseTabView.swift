@@ -39,62 +39,80 @@ struct BaseTabView: View {
     }
 
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                ForEach(tagItem, id: \.self) { tag in
-                    WordListView(deleteWord: { word in
-                        deleteWord(word)
-                    },
-                                 checkedItems: $checkedItems,
-                                 itemList: $wordList,
-                                 onOrderChange: { newOrderList in
-                        wordAppService.saveWordsToUserDefaults(newOrderList.map { $0.toDTO() },
-                                                               for: selection.id)
-                    }, 
-                                 selectedTag: selection)
-                        .tabItem {
-                            Label(tag.tagName,
-                                  systemImage: "tag")
+            NavigationView {
+                TabView(selection: $selection) {
+                    if tagItem.isEmpty && wordList.isEmpty {
+                        VStack {
+                            Image("empty-list")
+                                .resizable()
+                                .frame(width: 200, height: 200)
+                                .aspectRatio(contentMode: .fit)
+                                .overlay(Color.white.opacity(0.5))
+                                .padding()
+                            Text("まだワードが登録されていません")
+                                .font(.system(size: 20))
+                                .overlay(Color.white.opacity(0.5))
+                                .padding()
+                            Text("右上の+ボタンから追加してください")
+                                .overlay(Color.white.opacity(0.5))
+                                .font(.system(size: 15))
                         }
-                        .tag(tag)
-                }
-            }
-            .onChange(of: selection) { _, _ in
-                let newWords = wordAppService.getWords(of: selection.id)
-                let previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
-                if Set(previousWords) != Set(newWords) {
-                    wordList = newWords
-                } else {
-                    wordList = previousWords
-                }
-            }
-            .fullScreenCover(isPresented: $showInputModal) {
-                InputModal(tags: $tagItem,
-                           onDismiss: { tag, word in
-                    var previousWords = wordAppService.getWordsFromUserDefaults(tag.id)
-                    previousWords.append(word)
-                    wordAppService.saveWordsToUserDefaults(previousWords.map { $0.toDTO() },
-                                                           for: tag.id)
-                    if tag.id == selection.id {
-                        wordList = previousWords
                     } else {
-                        wordList = wordAppService.getWordsFromUserDefaults(selection.id)
+                        ForEach(tagItem, id: \.self) { tag in
+                            WordListView(deleteWord: { word in
+                                deleteWord(word)
+                            },
+                                         checkedItems: $checkedItems,
+                                         itemList: $wordList,
+                                         onOrderChange: { newOrderList in
+                                wordAppService.saveWordsToUserDefaults(newOrderList.map { $0.toDTO() },
+                                                                       for: selection.id)
+                            },
+                                         selectedTag: selection)
+                            .tabItem {
+                                Label(tag.tagName,
+                                      systemImage: "tag")
+                            }
+                            .tag(tag)
+                        }
                     }
-                    tagItem = wordAppService.getAllTags()
-                },
-                           onRegisterTag: {
-                    tagItem = wordAppService.getAllTags()
-                    selection = tagItem[0]
-                })
-            }
-            .toolbar {
-                Button("+") {
-                    showInputModal.toggle()
                 }
-                .font(.title3)
-                .padding()
+                .onChange(of: selection) { _, _ in
+                    let newWords = wordAppService.getWords(of: selection.id)
+                    let previousWords = wordAppService.getWordsFromUserDefaults(selection.id)
+                    if Set(previousWords) != Set(newWords) {
+                        wordList = newWords
+                    } else {
+                        wordList = previousWords
+                    }
+                }
+                .fullScreenCover(isPresented: $showInputModal) {
+                    InputModal(tags: $tagItem,
+                               onDismiss: { tag, word in
+                        var previousWords = wordAppService.getWordsFromUserDefaults(tag.id)
+                        previousWords.append(word)
+                        wordAppService.saveWordsToUserDefaults(previousWords.map { $0.toDTO() },
+                                                               for: tag.id)
+                        if tag.id == selection.id {
+                            wordList = previousWords
+                        } else {
+                            wordList = wordAppService.getWordsFromUserDefaults(selection.id)
+                        }
+                        tagItem = wordAppService.getAllTags()
+                    },
+                               onRegisterTag: {
+                        tagItem = wordAppService.getAllTags()
+                        selection = tagItem[0]
+                    })
+                }
+                .toolbar {
+                    Button("+") {
+                        showInputModal.toggle()
+                    }
+                    .font(.title3)
+                    .padding()
+                }
             }
-        }
     }
 
     func deleteWord(_ word: WordModel) {

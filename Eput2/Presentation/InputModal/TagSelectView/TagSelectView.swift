@@ -41,15 +41,15 @@ struct TagSelectView: View {
                 }) {
                     HStack {
                         Image(systemName: "plus.circle")
-                        Text("New Tag")
+                        Text("新規タグ")
                     }
                 }
                 .listRowSeparator(.hidden)
             }
             .listStyle(PlainListStyle())
-            .alert("Enter new tag name",
+            .alert("新しいタグ名を入力",
                    isPresented: $showingNewTagField) {
-                TextField("Enter new tag name",
+                TextField("新しいタグ名を入力",
                           text: $tagText)
                 Button("OK",
                        action: {

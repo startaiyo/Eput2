@@ -22,7 +22,7 @@ struct InputModal: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Text("Input")
+                Text("単語登録")
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(.top, 16) // Add top padding to the navigation title
@@ -30,16 +30,16 @@ struct InputModal: View {
                            alignment: .center)
 
                 HStack {
-                    Text("Input")
+                    Text("単語")
                         .font(.headline)
-                    TextField("Enter text", text: $inputText)
+                    TextField("インプットする単語を入力してください。", text: $inputText)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
 
                 }.padding()
 
                 HStack {
-                    Text("Language")
+                    Text("言語")
                         .font(.headline)
                     Spacer()
                     LangSelectView(selectedLang: $lang)
@@ -51,7 +51,7 @@ struct InputModal: View {
                     Spacer()
                     HStack(alignment: .center,
                            spacing: 8) {
-                        Text("Tags")
+                        Text("タグ")
                             .font(.headline)
 
                         TagSelectView(tags: $tags,
@@ -68,7 +68,7 @@ struct InputModal: View {
                 }.padding()
 
                 // Register Button
-                Button("Register") {
+                Button("登録する") {
                     Task {
                         guard let tag else { return }
                         let word = WordDTO(id: UUID().uuidString,

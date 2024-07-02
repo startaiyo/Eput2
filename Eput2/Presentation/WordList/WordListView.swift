@@ -39,7 +39,7 @@ struct WordListView: View {
             }
             .background(Color(.systemGray6))
 
-            Button("Read Text") {
+            Button("テキスト読み上げ") {
                 readText()
             }
             .disabled(checkedItems.isEmpty)
