@@ -47,16 +47,16 @@ struct BaseTabView: View {
                             .resizable()
                             .frame(width: 200, height: 200)
                             .aspectRatio(contentMode: .fit)
-                            .overlay(Color.white.opacity(0.5))
+                            .overlay(.white.opacity(0.5))
                             .padding()
                         
                         Text("まだワードが登録されていません")
                             .font(.system(size: 20))
-                            .overlay(Color.white.opacity(0.5))
+                            .overlay(.white.opacity(0.5))
                             .padding()
                         
                         Text("右上の+ボタンから追加してください")
-                            .overlay(Color.white.opacity(0.5))
+                            .overlay(.white.opacity(0.5))
                             .font(.system(size: 15))
                     }
                 } else {

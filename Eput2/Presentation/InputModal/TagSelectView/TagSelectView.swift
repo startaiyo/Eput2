@@ -59,7 +59,7 @@ struct TagSelectView: View {
             Spacer()
         }
         .padding()
-        .background(Color.white) // White background
+        .background(.white) // White background
         .cornerRadius(8) // Rounded corners
         .shadow(radius: 2)
     }
