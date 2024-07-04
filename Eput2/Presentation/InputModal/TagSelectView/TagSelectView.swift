@@ -11,7 +11,7 @@ struct TagSelectView: View {
     private let wordAppService: any WordAppService = DefaultWordAppService()
     @State var showingNewTagField = false
     @Binding var tags: [TagModel]
-    @Binding var selected: TagModel?
+    @Binding var selectedTag: TagModel?
     @Binding var tagText: String
     let registerTag: (String) -> Void
 
@@ -19,15 +19,15 @@ struct TagSelectView: View {
         VStack {
             Spacer()
 
-            List(selection: $selected) {
-                ForEach(tags, id: \.self) { item in
-                    TagCell(tagName: item.tagName, isSelected: selected == item)
+            List(selection: $selectedTag) {
+                ForEach(tags) { tag in
+                    TagCell(tagName: tag.tagName, isSelected: selectedTag == tag)
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
                         .padding(.vertical, 8) // Add vertical padding to create space between cells
                         .swipeActions(allowsFullSwipe: false) {
                             Button(role: .destructive) {
-                                deleteTag(item)
+                                deleteTag(tag)
                             } label: {
                                 Image(systemName: "trash")
                             }

@@ -5,7 +5,7 @@
 //  Created by Shotaro Doi on 2024/03/31.
 //
 
-struct WordModel: Hashable {
+struct WordModel: Hashable, Identifiable {
     let id: String
     let word: String
     let tagID: TagID

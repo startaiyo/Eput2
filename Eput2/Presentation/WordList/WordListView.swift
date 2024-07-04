@@ -22,7 +22,7 @@ struct WordListView: View {
     var body: some View {
         VStack {
             List(selection: $selectedWord) {
-                ForEach(words, id: \.self) { item in
+                ForEach(words) { item in
                     WordCell(
                         text: item.word,
                         checkBox: CheckBoxView(isChecked: binding(for: item))

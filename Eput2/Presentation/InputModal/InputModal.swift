@@ -61,7 +61,7 @@ struct InputModal: View {
 
                         TagSelectView(
                             tags: $tags,
-                            selected: $tag,
+                            selectedTag: $tag,
                             tagText: $newTagText,
                             registerTag: { tagText in
                                 let tag = TagModel(
