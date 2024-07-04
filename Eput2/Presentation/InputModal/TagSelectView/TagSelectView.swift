@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TagSelectView: View {
-    private let wordAppService = DefaultWordAppService()
+    private let wordAppService: any WordAppService = DefaultWordAppService()
     @State var showingNewTagField = false
     @Binding var tags: [TagModel]
     @Binding var selected: TagModel?
@@ -21,24 +21,23 @@ struct TagSelectView: View {
 
             List(selection: $selected) {
                 ForEach(tags, id: \.self) { item in
-                    TagCell(tagName: item.tagName,
-                            isSelected: selected == item)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .padding(.vertical, 8) // Add vertical padding to create space between cells
-                    .swipeActions(allowsFullSwipe: false) {
-                        Button(role: .destructive) {
-                            deleteTag(item)
-                        } label: {
-                            Image(systemName: "trash")
+                    TagCell(tagName: item.tagName, isSelected: selected == item)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .padding(.vertical, 8) // Add vertical padding to create space between cells
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                deleteTag(item)
+                            } label: {
+                                Image(systemName: "trash")
+                            }
                         }
-                    }
                 }
 
                 // New Tag Button
-                Button(action: {
+                Button {
                     showingNewTagField.toggle()
-                }) {
+                } label: {
                     HStack {
                         Image(systemName: "plus.circle")
                         Text("新規タグ")
@@ -46,15 +45,15 @@ struct TagSelectView: View {
                 }
                 .listRowSeparator(.hidden)
             }
-            .listStyle(PlainListStyle())
-            .alert("新しいタグ名を入力",
-                   isPresented: $showingNewTagField) {
-                TextField("新しいタグ名を入力",
-                          text: $tagText)
-                Button("OK",
-                       action: {
+            .listStyle(.plain)
+            .alert(
+                "新しいタグ名を入力",
+                isPresented: $showingNewTagField
+            ) {
+                TextField("新しいタグ名を入力", text: $tagText)
+                Button("OK") {
                     registerTag(tagText)
-                })
+                }
             }
 
             Spacer()
@@ -66,7 +65,7 @@ struct TagSelectView: View {
     }
 }
 
-extension TagSelectView {
+private extension TagSelectView {
     func loadTag() {
         tags = wordAppService.getAllTags()
     }

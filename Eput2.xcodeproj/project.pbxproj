@@ -34,7 +34,7 @@
 		F883DA252BBC3C900029F230 /* Realm+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA242BBC3C900029F230 /* Realm+.swift */; };
 		F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA292BBD86810029F230 /* TagSelectView.swift */; };
 		F883DA2C2BBD89840029F230 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2B2BBD89840029F230 /* TagCell.swift */; };
-		F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2E2BBD8B510029F230 /* LangSelectView.swift */; };
+		F883DA2F2BBD8B510029F230 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F883DA2E2BBD8B510029F230 /* LanguagePicker.swift */; };
 		F8E352F22BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */; };
 		F8E352F42BD53BF600D8CA27 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */; };
 		F8E6DE0F2BCEB71C004AC7E8 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */; };
@@ -85,7 +85,7 @@
 		F883DA242BBC3C900029F230 /* Realm+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+.swift"; sourceTree = "<group>"; };
 		F883DA292BBD86810029F230 /* TagSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectView.swift; sourceTree = "<group>"; };
 		F883DA2B2BBD89840029F230 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
-		F883DA2E2BBD8B510029F230 /* LangSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LangSelectView.swift; sourceTree = "<group>"; };
+		F883DA2E2BBD8B510029F230 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 		F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserDefaultsService.swift; sourceTree = "<group>"; };
 		F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				F883D9DD2BB99EF00029F230 /* InputModal.swift */,
-				F883DA2D2BBD8B400029F230 /* LangSelectView */,
+				F883DA2D2BBD8B400029F230 /* LanguagePicker */,
 				F883DA262BBD865B0029F230 /* TagSelectView */,
 			);
 			path = InputModal;
@@ -348,12 +348,12 @@
 			path = TagSelectView;
 			sourceTree = "<group>";
 		};
-		F883DA2D2BBD8B400029F230 /* LangSelectView */ = {
+		F883DA2D2BBD8B400029F230 /* LanguagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				F883DA2E2BBD8B510029F230 /* LangSelectView.swift */,
+				F883DA2E2BBD8B510029F230 /* LanguagePicker.swift */,
 			);
-			path = LangSelectView;
+			path = LanguagePicker;
 			sourceTree = "<group>";
 		};
 		F8E6DE0D2BCEB701004AC7E8 /* CheckBoxView */ = {
@@ -522,7 +522,7 @@
 				F883DA2A2BBD86810029F230 /* TagSelectView.swift in Sources */,
 				F8E352F22BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift in Sources */,
 				F883DA252BBC3C900029F230 /* Realm+.swift in Sources */,
-				F883DA2F2BBD8B510029F230 /* LangSelectView.swift in Sources */,
+				F883DA2F2BBD8B510029F230 /* LanguagePicker.swift in Sources */,
 				F883DA1E2BBC24A90029F230 /* WordObject.swift in Sources */,
 				05D5D9012BB848CD002C65C5 /* BaseTabView.swift in Sources */,
 				F883DA202BBC24B40029F230 /* TagDTO.swift in Sources */,

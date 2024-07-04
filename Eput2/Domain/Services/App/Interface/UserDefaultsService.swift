@@ -8,7 +8,6 @@
 import Foundation
 
 protocol UserDefaultsService {
-    func saveObjects<T: Codable>(_ values: [T],
-                                 forKey key: String) throws
-    func getObjects<T: Codable>(forKey key: String) throws -> [T]
+    func saveObjects<T: Encodable>(_ values: [T], forKey key: String) throws
+    func getObjects<T: Decodable>(forKey key: String) throws -> [T]
 }

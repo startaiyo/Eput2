@@ -6,19 +6,20 @@
 //
 
 final class DefaultWordAppService {
-    private let storageService: WordStorageService
-    private let userDefaultsService: UserDefaultsService
+    private let storageService: any WordStorageService
+    private let userDefaultsService: any UserDefaultsService
 
-    init(storageService: WordStorageService = DefaultWordStorageService(),
-         userDefaultsService: UserDefaultsService = DefaultUserDefaultsService()) {
+    init(
+        storageService: some WordStorageService = DefaultWordStorageService(),
+        userDefaultsService: some UserDefaultsService = DefaultUserDefaultsService()
+    ) {
         self.storageService = storageService
         self.userDefaultsService = userDefaultsService
     }
 }
 
 extension DefaultWordAppService: WordAppService {
-    func saveWordData(_ word: WordDTO,
-                      completionHandler: @escaping () -> Void) throws {
+    func saveWordData(_ word: WordDTO, completionHandler: @escaping () -> Void) throws {
         try storageService.saveWord(word) {
             completionHandler()
         }
@@ -29,7 +30,7 @@ extension DefaultWordAppService: WordAppService {
     }
     
     func getWords(of tag: TagID) -> [WordModel] {
-        return storageService.getWords(of: tag).map { $0.toModel() }
+        storageService.getWords(of: tag).map { $0.toModel() }
     }
 
     func saveTag(_ tag: TagModel) throws {
@@ -37,14 +38,12 @@ extension DefaultWordAppService: WordAppService {
     }
 
     func getAllTags() -> [TagModel] {
-        return storageService.getTags().map { $0.toModel() }
+        storageService.getTags().map { $0.toModel() }
     }
 
-    func saveWordsToUserDefaults(_ words: [WordDTO],
-                                 for tagID: TagID) {
+    func saveWordsToUserDefaults(_ words: [WordDTO], for tagID: TagID) {
         do {
-            try userDefaultsService.saveObjects(words,
-                                                forKey: tagID)
+            try userDefaultsService.saveObjects(words, forKey: tagID)
         } catch {
             print(error)
         }

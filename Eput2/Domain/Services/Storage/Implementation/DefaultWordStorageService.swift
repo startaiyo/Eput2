@@ -5,11 +5,11 @@
 //  Created by Shotaro Doi on 2024/04/02.
 //
 
-import Foundation
 import RealmSwift
 
 final class DefaultWordStorageService {
     // MARK: Private properties
+    
     private let configuration: Realm.Configuration
     private var realm: Realm {
         guard let realm = try? Realm(configuration: configuration) else {
@@ -19,6 +19,7 @@ final class DefaultWordStorageService {
     }
 
     // MARK: Lifecycle functions
+    
     init(configuration: Realm.Configuration = RealmStorage.config()) {
         self.configuration = configuration
     }
@@ -33,17 +34,14 @@ extension DefaultWordStorageService: WordStorageService {
     func saveTag(_ tag: TagDTO) throws {
         let tagObject = tag.toObject()
         try realm.safeWrite {
-            realm.add(tagObject,
-                      update: .all)
+            realm.add(tagObject, update: .all)
         }
     }
 
-    func saveWord(_ word: WordDTO,
-                  completionHandler: @escaping () -> Void) throws {
+    func saveWord(_ word: WordDTO, completionHandler: @escaping () -> Void) throws {
         let wordObject = word.toObject()
         try realm.safeWrite {
-            realm.add(wordObject,
-                      update: .all)
+            realm.add(wordObject, update: .all)
             completionHandler()
         }
     }
@@ -56,7 +54,7 @@ extension DefaultWordStorageService: WordStorageService {
     }
 
     func getTags() -> [TagDTO] {
-        return realm.objects(TagObject.self).map { $0.toDTO() }
+        realm.objects(TagObject.self).map { $0.toDTO() }
     }
 
     func deleteTag(_ tag: TagDTO) throws {

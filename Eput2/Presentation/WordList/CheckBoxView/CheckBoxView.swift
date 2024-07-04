@@ -14,12 +14,8 @@ struct CheckBoxView: View {
         Button {
             isChecked.toggle()
         } label: {
-            if isChecked {
-                Image(systemName: "checkmark.square")
-            } else {
-                Image(systemName: "square")
-            }
+            Image(systemName: isChecked ? "checkmark.square" : "square")
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.plain)
     }
 }

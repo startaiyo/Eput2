@@ -9,14 +9,16 @@ struct WordModel: Hashable {
     let id: String
     let word: String
     let tagID: TagID
-    let lang: String
+    let languageCode: String
 }
 
 extension WordModel {
     func toDTO() -> WordDTO {
-        return .init(id: id,
-                     word: word,
-                     tagID: tagID, 
-                     lang: lang)
+        .init(
+            id: id,
+            word: word,
+            tagID: tagID,
+            languageCode: languageCode
+        )
     }
 }

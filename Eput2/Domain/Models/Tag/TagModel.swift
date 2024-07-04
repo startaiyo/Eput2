@@ -7,14 +7,16 @@
 
 typealias TagID = String
 
-struct TagModel: Equatable, Hashable {
+struct TagModel: Hashable, Identifiable {
     let id: TagID
     let tagName: String
 }
 
 extension TagModel {
     func toDTO() -> TagDTO {
-        return .init(id: id,
-                     tagName: tagName)
+        .init(
+            id: id,
+            tagName: tagName
+        )
     }
 }

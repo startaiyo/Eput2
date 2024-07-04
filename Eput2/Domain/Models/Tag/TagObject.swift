@@ -13,9 +13,12 @@ class TagObject: Object {
 }
 
 // MARK: - Custom initializers
+
 extension TagObject {
-    convenience init(id: String,
-                     tagName: String) {
+    convenience init(
+        id: String,
+        tagName: String
+    ) {
         self.init()
         self.id = id
         self.tagName = tagName
@@ -23,8 +26,9 @@ extension TagObject {
 }
 
 // MARK: - Public functions
+
 extension TagObject {
     func toDTO() -> TagDTO {
-        return .init(from: self)
+        .init(from: self)
     }
 }

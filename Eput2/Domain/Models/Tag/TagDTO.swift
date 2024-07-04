@@ -11,6 +11,7 @@ struct TagDTO: Equatable {
 }
 
 // MARK: - Custom initializers
+
 extension TagDTO {
     init(from object: TagObject) {
         id = object.id
@@ -19,14 +20,19 @@ extension TagDTO {
 }
 
 // MARK: - Public functions
+
 extension TagDTO {
     func toModel() -> TagModel {
-        return .init(id: id,
-                     tagName: tagName)
+        .init(
+            id: id,
+            tagName: tagName
+        )
     }
 
     func toObject() -> TagObject {
-        return .init(id: id,
-                     tagName: tagName)
+        .init(
+            id: id,
+            tagName: tagName
+        )
     }
 }
