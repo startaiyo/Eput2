@@ -36,7 +36,7 @@ extension WordDTO {
     }
 
     func toObject() -> WordObject {
-        WordObject(
+        .init(
             id: id,
             word: word,
             tagID: tagID,
