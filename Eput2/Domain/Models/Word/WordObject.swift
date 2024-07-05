@@ -11,26 +11,30 @@ class WordObject: Object {
     @Persisted(primaryKey: true) var id: String
     @Persisted var word: String
     @Persisted var tagID: String
-    @Persisted var lang: String
+    @Persisted var languageCode: String
 }
 
 // MARK: - Custom initializers
+
 extension WordObject {
-    convenience init(id: String,
-                     word: String,
-                     tagID: String,
-                     lang: String) {
+    convenience init(
+        id: String,
+        word: String,
+        tagID: String,
+        languageCode: String
+    ) {
         self.init()
         self.id = id
         self.word = word
         self.tagID = tagID
-        self.lang = lang
+        self.languageCode = languageCode
     }
 }
 
 // MARK: - Public functions
+
 extension WordObject {
     func toDTO() -> WordDTO {
-        return .init(from: self)
+        .init(from: self)
     }
 }

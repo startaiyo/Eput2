@@ -13,6 +13,7 @@ struct RealmConstants {
 
 final class RealmStorage {
     // MARK: Properties
+    
     private var realm: Realm {
         guard let realm = try? Realm(configuration: RealmStorage.config()) else {
             fatalError("Could not create Realm")

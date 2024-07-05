@@ -9,32 +9,38 @@ struct WordDTO: Equatable, Codable {
     let id: String
     let word: String
     let tagID: TagID
-    let lang: String
+    let languageCode: String
 }
 
 // MARK: - Custom initializers
+
 extension WordDTO {
     init(from object: WordObject) {
         id = object.id
         word = object.word
         tagID = object.tagID
-        lang = object.lang
+        languageCode = object.languageCode
     }
 }
 
 // MARK: - Public functions
+
 extension WordDTO {
     func toModel() -> WordModel {
-        return .init(id: id,
-                     word: word,
-                     tagID: tagID,
-                     lang: lang)
+        .init(
+            id: id,
+            word: word,
+            tagID: tagID,
+            languageCode: languageCode
+        )
     }
 
     func toObject() -> WordObject {
-        return WordObject(id: id,
-                          word: word,
-                          tagID: tagID,
-                          lang: lang)
+        .init(
+            id: id,
+            word: word,
+            tagID: tagID,
+            languageCode: languageCode
+        )
     }
 }

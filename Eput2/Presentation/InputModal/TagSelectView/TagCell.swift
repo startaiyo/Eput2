@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct TagCell: View {
-    var tagName = ""
-    var isSelected = false
+    let tagName: String
+    let isSelected: Bool
 
     var body: some View {
         HStack {
             Text(tagName)
-                .foregroundColor(.primary)
+                .foregroundStyle(.primary)
                 .padding(.horizontal, 12)
                 .padding(.vertical, 8) // Increase vertical padding for more spacing
                 .cornerRadius(8) // Reduce corner radius for a more subtle appearance
-                .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 1) // Reduce shadow intensity
+                .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 1) // Reduce shadow intensity
                 .frame(maxWidth: .infinity) // Expand cell to fill the width
                 .overlay(
                     RoundedRectangle(cornerRadius: 8) // Add rounded rectangle overlay to create border
-                        .stroke(Color.black.opacity(0.2), lineWidth: 1) // Set stroke color and width
+                        .stroke(.black.opacity(0.2), lineWidth: 1) // Set stroke color and width
                 )
 
             Spacer()
             
             if isSelected {
                 Image(systemName: "checkmark")
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
             }
         }
         .padding(.horizontal)
@@ -37,5 +37,5 @@ struct TagCell: View {
 }
 
 #Preview {
-    TagCell()
+    TagCell(tagName: "", isSelected: false)
 }

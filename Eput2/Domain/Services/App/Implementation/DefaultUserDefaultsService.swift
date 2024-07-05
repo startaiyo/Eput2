@@ -14,16 +14,13 @@ final class DefaultUserDefaultsService {
 }
 
 extension DefaultUserDefaultsService: UserDefaultsService {
-    func saveObjects<T: Codable>(_ values: [T],
-                                 forKey key: String) throws {
-        userDefaults.set(try jsonEncoder.encode(values),
-                         forKey: key)
+    func saveObjects<T: Encodable>(_ values: [T], forKey key: String) throws {
+        userDefaults.set(try jsonEncoder.encode(values), forKey: key)
     }
 
-    func getObjects<T: Codable>(forKey key: String) throws -> [T] {
+    func getObjects<T: Decodable>(forKey key: String) throws -> [T] {
         guard let data = userDefaults.object(forKey: key) as? Data else { return [] }
-        let decodedData = try jsonDecoder.decode([T].self,
-                                                 from: data)
+        let decodedData = try jsonDecoder.decode([T].self, from: data)
         return decodedData
     }
 }

@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct TagSelectView: View {
-    private let wordAppService = DefaultWordAppService()
+    private let wordAppService: any WordAppService = DefaultWordAppService()
     @State var showingNewTagField = false
     @Binding var tags: [TagModel]
-    @Binding var selected: TagModel?
+    @Binding var selectedTag: TagModel?
     @Binding var tagText: String
     let registerTag: (String) -> Void
 
@@ -19,26 +19,25 @@ struct TagSelectView: View {
         VStack {
             Spacer()
 
-            List(selection: $selected) {
-                ForEach(tags, id: \.self) { item in
-                    TagCell(tagName: item.tagName,
-                            isSelected: selected == item)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .padding(.vertical, 8) // Add vertical padding to create space between cells
-                    .swipeActions(allowsFullSwipe: false) {
-                        Button(role: .destructive) {
-                            deleteTag(item)
-                        } label: {
-                            Image(systemName: "trash")
+            List(selection: $selectedTag) {
+                ForEach(tags) { tag in
+                    TagCell(tagName: tag.tagName, isSelected: selectedTag == tag)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
+                        .padding(.vertical, 8) // Add vertical padding to create space between cells
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                deleteTag(tag)
+                            } label: {
+                                Image(systemName: "trash")
+                            }
                         }
-                    }
                 }
 
                 // New Tag Button
-                Button(action: {
+                Button {
                     showingNewTagField.toggle()
-                }) {
+                } label: {
                     HStack {
                         Image(systemName: "plus.circle")
                         Text("新規タグ")
@@ -46,27 +45,27 @@ struct TagSelectView: View {
                 }
                 .listRowSeparator(.hidden)
             }
-            .listStyle(PlainListStyle())
-            .alert("新しいタグ名を入力",
-                   isPresented: $showingNewTagField) {
-                TextField("新しいタグ名を入力",
-                          text: $tagText)
-                Button("OK",
-                       action: {
+            .listStyle(.plain)
+            .alert(
+                "新しいタグ名を入力",
+                isPresented: $showingNewTagField
+            ) {
+                TextField("新しいタグ名を入力", text: $tagText)
+                Button("OK") {
                     registerTag(tagText)
-                })
+                }
             }
 
             Spacer()
         }
         .padding()
-        .background(Color.white) // White background
+        .background(.white) // White background
         .cornerRadius(8) // Rounded corners
         .shadow(radius: 2)
     }
 }
 
-extension TagSelectView {
+private extension TagSelectView {
     func loadTag() {
         tags = wordAppService.getAllTags()
     }
