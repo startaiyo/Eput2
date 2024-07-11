@@ -6,6 +6,7 @@
 *.xcuserstate
 project.xcworkspace/
 *.xcodeproj/xcuserdata/*
+*.xcodeproj/xcshareddata/*
 *.xcworkspace/xcuserdata/*
 *.xcworkspace/xcshareddata/*
 Build/*

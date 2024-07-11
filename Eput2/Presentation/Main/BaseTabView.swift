@@ -97,10 +97,10 @@ struct BaseTabView: View {
                             previousWords.map { $0.toDTO() },
                             for: tag.id
                         )
-                        words = if tag.id == selectedTag.id {
-                            previousWords
+                        if tag.id == selectedTag.id {
+                            words = previousWords
                         } else {
-                            wordAppService.getWordsFromUserDefaults(selectedTag.id)
+                            words = wordAppService.getWordsFromUserDefaults(selectedTag.id)
                         }
                         tags = wordAppService.getAllTags()
                     },
