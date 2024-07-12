@@ -86,6 +86,7 @@
 		F883DA292BBD86810029F230 /* TagSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSelectView.swift; sourceTree = "<group>"; };
 		F883DA2B2BBD89840029F230 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		F883DA2E2BBD8B510029F230 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
+		F8915F152C40DABB005D39AB /* Eput2Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Eput2Debug.entitlements; sourceTree = "<group>"; };
 		F8E352F12BD53BEF00D8CA27 /* DefaultUserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultUserDefaultsService.swift; sourceTree = "<group>"; };
 		F8E352F32BD53BF600D8CA27 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		F8E6DE0E2BCEB71C004AC7E8 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
@@ -160,6 +161,7 @@
 		05C6389E2BAFA667007A98BE /* Eput2 */ = {
 			isa = PBXGroup;
 			children = (
+				F8915F152C40DABB005D39AB /* Eput2Debug.entitlements */,
 				F883D9FE2BBC1E710029F230 /* Domain */,
 				F883DA232BBC3C850029F230 /* Extension */,
 				05C638C92BB30089007A98BE /* Presentation */,
@@ -686,6 +688,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Eput2/Eput2Debug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Eput2/Preview Content\"";

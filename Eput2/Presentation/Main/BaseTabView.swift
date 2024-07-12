@@ -37,7 +37,7 @@ struct BaseTabView: View {
         let previousWords = wordAppService.getWordsFromUserDefaults(selectedTag.id)
         _words = State(initialValue: Set(previousWords) != Set(words) ? words : previousWords)
     }
-    
+
     var body: some View {
         NavigationStack {
             TabView(selection: $selectedTag) {
