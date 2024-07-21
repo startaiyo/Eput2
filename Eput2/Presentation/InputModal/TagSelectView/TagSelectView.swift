@@ -24,7 +24,10 @@ struct TagSelectView: View {
                     TagCell(tagName: tag.tagName, isSelected: selectedTag == tag)
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
-                        .padding(.vertical, 8) // Add vertical padding to create space between cells
+                        .padding(.vertical, 8)
+                        .onTapGesture {
+                            selectedTag = tag
+                        }
                         .swipeActions(allowsFullSwipe: false) {
                             Button(role: .destructive) {
                                 deleteTag(tag)

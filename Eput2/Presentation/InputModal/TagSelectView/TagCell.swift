@@ -29,7 +29,6 @@ struct TagCell: View {
             
             if isSelected {
                 Image(systemName: "checkmark")
-                    .foregroundStyle(.white)
             }
         }
         .padding(.horizontal)

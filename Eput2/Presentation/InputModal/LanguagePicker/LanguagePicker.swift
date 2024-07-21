@@ -14,7 +14,7 @@ struct LanguagePicker: View {
         Picker("言語選択", selection: $selectedLanguage) {
             ForEach(Language.allCases) { language in
                 Text(language.text)
-                    .tag(language.code)
+                    .tag(language)
             }
         }
         .pickerStyle(.segmented)
