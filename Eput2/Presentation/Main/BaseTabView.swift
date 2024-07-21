@@ -63,7 +63,7 @@ struct BaseTabView: View {
 
     var body: some View {
         NavigationStack {
-            TabView(selection: $selectedTag) {
+            VStack {
                 if tags.isEmpty && words.isEmpty {
                     VStack {
                         Image("empty-list")
@@ -73,7 +73,7 @@ struct BaseTabView: View {
                             .overlay(.white.opacity(0.5))
                             .padding()
                         
-                        Text("まだワードが登録されていません")
+                        Text("まだタグが登録されていません")
                             .font(.system(size: 20))
                             .overlay(.white.opacity(0.5))
                             .padding()
@@ -83,35 +83,37 @@ struct BaseTabView: View {
                             .font(.system(size: 15))
                     }
                 } else {
-                    ForEach(tags) { tag in
-                        WordListView(
-                            deleteWord: { word in
-                                deleteWord(word)
-                            },
-                            checkedWords: $checkedWords,
-                            words: $words,
-                            onOrderChange: { newOrderList in
-                                wordAppService.saveWordsToUserDefaults(
-                                    newOrderList.map { $0.toDTO() },
-                                    for: selectedTag.id
-                                )
-                            },
-                            selectedTag: selectedTag
-                        )
-                        .tabItem {
-                            Label(tag.tagName, systemImage: "tag")
+                    List {
+                        ForEach(tags) { tag in
+                            NavigationLink(destination:
+                                            WordListView(
+                                                deleteWord: { word in
+                                                    deleteWord(word)
+                                                },
+                                                checkedWords: $checkedWords,
+                                                words: $words,
+                                                onOrderChange: { newOrderList in
+                                                    wordAppService.saveWordsToUserDefaults(
+                                                        newOrderList.map { $0.toDTO() },
+                                                        for: selectedTag.id
+                                                    )
+                                                },
+                                                selectedTag: selectedTag
+                                            )
+                            ) {
+                                Text(tag.tagName)
+                            }
+                            .onTapGesture {
+                                let newWords = wordAppService.getWords(of: selectedTag.id)
+                                let previousWords = wordAppService.getWordsFromUserDefaults(selectedTag.id)
+                                if dummyTags.contains(selectedTag) {
+                                    words = dummyWords.filter { $0.tagID == selectedTag.id }
+                                } else {
+                                    words = Set(previousWords) != Set(newWords) ? newWords : previousWords
+                                }
+                            }
                         }
-                        .tag(tag)
                     }
-                }
-            }
-            .onChange(of: selectedTag) { _, _ in
-                let newWords = wordAppService.getWords(of: selectedTag.id)
-                let previousWords = wordAppService.getWordsFromUserDefaults(selectedTag.id)
-                if dummyTags.contains(selectedTag) {
-                    words = dummyWords.filter { $0.tagID == selectedTag.id }
-                } else {
-                    words = Set(previousWords) != Set(newWords) ? newWords : previousWords
                 }
             }
             .fullScreenCover(isPresented: $showInputModal) {
