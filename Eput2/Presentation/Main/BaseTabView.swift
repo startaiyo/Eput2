@@ -95,22 +95,24 @@ struct BaseTabView: View {
                                                 onOrderChange: { newOrderList in
                                                     wordAppService.saveWordsToUserDefaults(
                                                         newOrderList.map { $0.toDTO() },
-                                                        for: selectedTag.id
+                                                        for: tag.id
                                                     )
                                                 },
-                                                selectedTag: selectedTag
+                                                selectedTag: selectedTag,
+                                                onTapGesture: {
+                                                    print(tag)
+                                                    selectedTag = tag
+                                                    let newWords = wordAppService.getWords(of: tag.id)
+                                                    let previousWords = wordAppService.getWordsFromUserDefaults(tag.id)
+                                                    if dummyTags.contains(selectedTag) {
+                                                        words = dummyWords.filter { $0.tagID == tag.id }
+                                                    } else {
+                                                        words = Set(previousWords) != Set(newWords) ? newWords : previousWords
+                                                    }
+                                                }
                                             )
                             ) {
                                 Text(tag.tagName)
-                            }
-                            .onTapGesture {
-                                let newWords = wordAppService.getWords(of: selectedTag.id)
-                                let previousWords = wordAppService.getWordsFromUserDefaults(selectedTag.id)
-                                if dummyTags.contains(selectedTag) {
-                                    words = dummyWords.filter { $0.tagID == selectedTag.id }
-                                } else {
-                                    words = Set(previousWords) != Set(newWords) ? newWords : previousWords
-                                }
                             }
                         }
                     }
@@ -145,14 +147,22 @@ struct BaseTabView: View {
                 }
             }
             .toolbar {
-                Button("+") {
-                    showInputModal.toggle()
-                    if dummyTags.contains(selectedTag) {
-                        tags = []
+                ToolbarItem(placement: .primaryAction) {
+                    Button("+") {
+                        showInputModal.toggle()
+                        if dummyTags.contains(selectedTag) {
+                            tags = []
+                        }
                     }
+                    .font(.title3)
+                    .padding()
                 }
-                .font(.title3)
-                .padding()
+                ToolbarItem {
+                    EditButton()
+                }
+            }
+            .onAppear {
+
             }
         }
     }

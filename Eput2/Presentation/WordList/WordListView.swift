@@ -14,7 +14,8 @@ struct WordListView: View {
     @Binding var words: [WordModel]
     let onOrderChange: (_ newOrder: [WordModel]) -> Void
     let selectedTag: TagModel
-    
+    let onTapGesture: () -> Void
+
     @State private var selectedWord: WordModel?
     
     private let synthesizer = AVSpeechSynthesizer()
@@ -74,6 +75,8 @@ struct WordListView: View {
                 }
             }
             .background(Color(uiColor: .systemGray6))
+        }.onAppear {
+            onTapGesture()
         }
     }
 }
