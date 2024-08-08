@@ -100,7 +100,6 @@ struct BaseTabView: View {
                                                 },
                                                 selectedTag: selectedTag,
                                                 onTapGesture: {
-                                                    print(tag)
                                                     selectedTag = tag
                                                     let newWords = wordAppService.getWords(of: tag.id)
                                                     let previousWords = wordAppService.getWordsFromUserDefaults(tag.id)
