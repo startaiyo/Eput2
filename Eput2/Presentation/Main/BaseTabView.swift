@@ -24,17 +24,41 @@ struct BaseTabView: View {
                                                  tagID: "dummy1",
                                                  languageCode: Language.japanese.code),
                                            .init(id: "dummy3",
-                                                 word: "I like Eput",
+                                                 word: "We can add words through + button in TagList",
                                                  tagID: "dummy2",
                                                  languageCode: Language.english.code),
-                                           .init(id: "dummy4",
-                                                 word: "右上の+ボタンから単語を追加しましょう！",
+                                           .init(id: "dummy7",
+                                                 word: "追加した単語はスワイプで削除できます",
                                                  tagID: "dummy1",
-                                                 languageCode: Language.japanese.code)]
+                                                 languageCode: Language.japanese.code),
+                                           .init(id: "dummy9",
+                                                 word: "単語を長押しすると順番を入れ替えられます。",
+                                                 tagID: "dummy1",
+                                                 languageCode: Language.japanese.code),
+                                           .init(id: "dummy4",
+                                                 word: "タグリスト右上の+ボタンから単語を追加しましょう！",
+                                                 tagID: "dummy1",
+                                                 languageCode: Language.japanese.code),
+                                           .init(id: "dummy8",
+                                                 word: "All words can be deleted by swipe",
+                                                 tagID: "dummy2",
+                                                 languageCode: Language.english.code),
+                                           .init(id: "dummy10",
+                                                 word: "If we hold each row, we can reorder the list",
+                                                 tagID: "dummy2",
+                                                 languageCode: Language.english.code),
+                                           .init(id: "dummy5",
+                                                 word: "If we select the words, the words are pronounced in order",
+                                                 tagID: "dummy2",
+                                                 languageCode: Language.english.code),
+                                           .init(id: "dummy6",
+                                                 word: "Let's add the words for now!",
+                                                 tagID: "dummy2",
+                                                 languageCode: Language.english.code)]
     private let dummyTags: [TagModel] = [.init(id: "dummy1",
                                                tagName: "Eputの説明"),
                                          .init(id: "dummy2",
-                                               tagName: "English")]
+                                               tagName: "Explanation in English")]
 
     init() {
         let items = wordAppService.getAllTags()
@@ -156,13 +180,8 @@ struct BaseTabView: View {
                     .font(.title3)
                     .padding()
                 }
-                ToolbarItem {
-                    EditButton()
-                }
             }
-            .onAppear {
-
-            }
+            .navigationTitle("タグリスト")
         }
     }
 }
